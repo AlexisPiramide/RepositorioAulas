@@ -8,15 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AulaDAO {
-    private Connection conexion;
-    private final String id = "id";
-    private final String query = "SELECT " + id + " FROM aulas";
+    private static Connection conexion;
+
 
     public AulaDAO(Connection conexion) {
         this.conexion = conexion;
     }
 
-    public List<String> obtenerAulas() {
+    public static List<String> obtenerAulas() {
+
+        String id = "id";
+        String query = "SELECT " + id + " FROM aulas";
         List<String> aulas = new ArrayList<>();
 
         try (PreparedStatement statement = conexion.prepareStatement(query);
