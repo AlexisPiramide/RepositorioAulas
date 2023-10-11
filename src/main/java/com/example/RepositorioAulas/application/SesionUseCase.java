@@ -10,7 +10,7 @@ import java.util.List;
 public class SesionUseCase {
 
 
-    public List<Sesion> getAllAulas(){
+    public List<Object> getAllAulas(){
         return DAOFactory.getInstance().getSesionRepository().getAllAulas();
     }
     public List<Sesion> getAll(){
