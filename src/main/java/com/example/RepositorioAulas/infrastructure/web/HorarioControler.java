@@ -19,14 +19,13 @@ public class HorarioControler {
         sesionUseCase = new SesionUseCase();
     }
 
-    @PostMapping()
-    public String horario(Model model, @RequestParam String id) {
-
-        model.addAttribute("ListaLunes",filtrahorariosLunes(id));
-        model.addAttribute("ListaMartes",filtrahorariosMartes(id));
-        model.addAttribute("ListaMiercoles",filtrahorariosMiercoles(id));
-        model.addAttribute("ListaJueves",filtrahorariosJueves(id));
-        model.addAttribute("ListaViernes",filtrahorariosViernes(id));
+    @PostMapping("/horario")
+    public String horario(Model model, Sesion sesion) {
+        model.addAttribute("ListaLunes",filtrahorariosLunes(sesion.getId_aula()));
+        model.addAttribute("ListaMartes",filtrahorariosMartes(sesion.getId_aula()));
+        model.addAttribute("ListaMiercoles",filtrahorariosMiercoles(sesion.getId_aula()));
+        model.addAttribute("ListaJueves",filtrahorariosJueves(sesion.getId_aula()));
+        model.addAttribute("ListaViernes",filtrahorariosViernes(sesion.getId_aula()));
 
         return "horario";
     }

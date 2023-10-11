@@ -42,7 +42,6 @@ public class SesionRepositorySQL implements SesionRepository {
 
     @Override
     public List<Sesion> getALl(String id_aula) {
-        System.out.println(id_aula);
         try {
             Connection connectionBD = ConectionManager.getConexion("horarioAulas" );
             PreparedStatement stmnt = connectionBD.prepareStatement(

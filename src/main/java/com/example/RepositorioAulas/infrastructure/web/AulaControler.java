@@ -18,12 +18,6 @@ public class AulaControler {
         sesionUseCase = new SesionUseCase();
     }
 
-    @PostMapping("/horario")
-    public String horario() {
-        return "horario";
-    }
-
-    /**Asegurarse de que AulaDOA.obtenerAulas() tiene la consulta bien */
     @GetMapping("/form")
     public String formulario(Model model){
         List<Object> Aulas = sesionUseCase.getAllAulas();
