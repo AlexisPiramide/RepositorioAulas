@@ -1,4 +1,4 @@
-package com.example.RepositorioAulas;
+package com.example.RepositorioAulas.infrastructure.web;
 
 import com.example.RepositorioAulas.BD.AulaDAO;
 import org.springframework.ui.Model;
