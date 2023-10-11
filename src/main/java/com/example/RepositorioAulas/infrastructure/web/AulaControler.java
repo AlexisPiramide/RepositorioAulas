@@ -1,15 +1,12 @@
 package com.example.RepositorioAulas.infrastructure.web;
 
-import com.example.RepositorioAulas.BD.AulaDAO;
 import com.example.RepositorioAulas.application.SesionUseCase;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 public class AulaControler {
