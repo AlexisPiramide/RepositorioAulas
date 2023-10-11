@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface SesionRepository {
 
-    public List<Sesion> getAllAulas();
+    public List<Object> getAllAulas();
 
     public List<Sesion> getALl();
 }
