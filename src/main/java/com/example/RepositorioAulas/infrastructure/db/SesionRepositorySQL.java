@@ -1,6 +1,6 @@
 package com.example.RepositorioAulas.infrastructure.db;
 
-import com.example.RepositorioAulas.BD.ConectionManager;
+import com.example.RepositorioAulas.connection.ConectionManager;
 import com.example.RepositorioAulas.domain.Sesion;
 import com.example.RepositorioAulas.domain.SesionRepository;
 import org.springframework.stereotype.Controller;

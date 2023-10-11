@@ -1,4 +1,4 @@
-package com.example.RepositorioAulas.BD;
+package com.example.RepositorioAulas.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
