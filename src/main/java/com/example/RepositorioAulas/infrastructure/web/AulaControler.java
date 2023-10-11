@@ -23,8 +23,8 @@ public class AulaControler {
             Integer horaInicio = 8 + i;
             Integer horaFin = 10 + i;
 
-            Aula aula = new Aula(idAula, dia, profesor, materia, nSesion, horaInicio, horaFin);
-            Aulas.add(aula.getIdAula());
+         //   Aula aula = new Aula(idAula, dia, profesor, materia, nSesion, horaInicio, horaFin);
+          //  Aulas.add(aula.getIdAula());
         }
 
         return Aulas;
