@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="../form">Regresar</a>
+    <hr>
+<table>
+    <thead>
+    <tr>
+        <th>Hora</th>
+        <th>Lunes</th>
+        <th>Martes</th>
+        <th>Miércoles</th>
+        <th>Jueves</th>
+        <th>Viernes</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="Aula : ${arrayLunes}">
+        <td th:text="${Aula.horaInicio + ' - ' + Aula.horaFin}"></td>
+        <td th:each="schedule : ${schedules[0]}">
+        <td th:text="${schedule}"></td>
+        </td>
+        <td th:each="schedule : ${schedules[1]}">
+        <td th:text="${schedule}"></td>
+        </td>
+        <td th:each="schedule : ${schedules[2]}">
+        <td th:text="${schedule}"></td>
+        </td>
+        <td th:each="schedule : ${schedules[3]}">
+        <td th:text="${schedule}"></td>
+        </td>
+        <td th:each="schedule : ${schedules[4]}">
+        <td th:text="${schedule}"></td>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
