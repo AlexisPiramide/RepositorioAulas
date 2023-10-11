@@ -5,39 +5,53 @@
     <title>Title</title>
 </head>
 <body>
-<a href="../form">Regresar</a>
+<a href="form.html">Regresar</a>
     <hr>
-<table>
-    <thead>
+<table empty-cells=show>
     <tr>
-        <th>Hora</th>
+        <th></th>
         <th>Lunes</th>
         <th>Martes</th>
         <th>Miércoles</th>
         <th>Jueves</th>
         <th>Viernes</th>
     </tr>
-    </thead>
-    <tbody>
-    <tr th:each="Aula : ${arrayLunes}">
-        <td th:text="${Aula.horaInicio + ' - ' + Aula.horaFin}"></td>
-        <td th:each="schedule : ${schedules[0]}">
-        <td th:text="${schedule}"></td>
-        </td>
-        <td th:each="schedule : ${schedules[1]}">
-        <td th:text="${schedule}"></td>
-        </td>
-        <td th:each="schedule : ${schedules[2]}">
-        <td th:text="${schedule}"></td>
-        </td>
-        <td th:each="schedule : ${schedules[3]}">
-        <td th:text="${schedule}"></td>
-        </td>
-        <td th:each="schedule : ${schedules[4]}">
-        <td th:text="${schedule}"></td>
+    <tr th:each="set : ${ListaLunes}">
+        <td>
+            <span th:text="${set.id_aula}"></span><br/>
+            <span th:text="${set.hora_inicio} + ' - ' + ${set.hora_fin}"></span><br/>
+            <span th:text="${set.profesor}"></span>
         </td>
     </tr>
-    </tbody>
+    <tr th:each="set : ${ListaMartes}">
+        <td>
+            <span th:text="${set.id_aula}"></span><br/>
+            <span th:text="${set.hora_inicio} + ' - ' + ${set.hora_fin}"></span><br/>
+            <span th:text="${set.profesor}"></span>
+        </td>
+    </tr>
+    <tr th:each="set : ${ListaMiercoles}">
+        <td>
+            <span th:text="${set.id_aula}"></span><br/>
+            <span th:text="${set.hora_inicio} + ' - ' + ${set.hora_fin}"></span><br/>
+            <span th:text="${set.profesor}"></span>
+        </td>
+    </tr>
+    <tr th:each="set : ${ListaJueves}">
+        <td>
+            <span th:text="${set.id_aula}"></span><br/>
+            <span th:text="${set.hora_inicio} + ' - ' + ${set.hora_fin}"></span><br/>
+            <span th:text="${set.profesor}"></span>
+        </td>
+    </tr>
+    <tr th:each="set : ${ListaViernes}">
+        <td>
+            <span th:text="${set.id_aula}"></span><br/>
+            <span th:text="${set.hora_inicio} + ' - ' + ${set.hora_fin}"></span><br/>
+            <span th:text="${set.profesor}"></span>
+        </td>
+    </tr>
 </table>
 </body>
 </html>
+
