@@ -15,8 +15,6 @@ public class AulaControler {
     SesionUseCase sesionUseCase;
 
     public AulaControler() {
-
-
         sesionUseCase = new SesionUseCase();
     }
 

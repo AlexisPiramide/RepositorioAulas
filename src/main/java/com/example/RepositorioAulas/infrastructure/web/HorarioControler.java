@@ -1,17 +1,42 @@
 package com.example.RepositorioAulas.infrastructure.web;
 
+import com.example.RepositorioAulas.application.SesionUseCase;
 import com.example.RepositorioAulas.domain.Sesion;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Controller
 public class HorarioControler {
-    public void filtrahorarios(List<Sesion> lista) {
+
+    SesionUseCase sesionUseCase;
+
+    public HorarioControler() {
+        sesionUseCase = new SesionUseCase();
+    }
+
+    @PostMapping()
+    public String horario(Model model, @RequestParam String id) {
+
+        model.addAttribute("ListaLunes",filtrahorariosLunes(id));
+        model.addAttribute("ListaMartes",filtrahorariosMartes(id));
+        model.addAttribute("ListaMiercoles",filtrahorariosMiercoles(id));
+        model.addAttribute("ListaJueves",filtrahorariosJueves(id));
+        model.addAttribute("ListaViernes",filtrahorariosViernes(id));
+
+        return "horario";
+    }
+
+
+    public List<Sesion> filtrahorariosLunes(String id) {
+
+        List<Sesion> lista = sesionUseCase.getAll(id);
         List<Sesion> ListaLunes = new ArrayList<>();
-        List<Sesion> ListaMartes = new ArrayList<>();
-        List<Sesion> ListaMiercoles = new ArrayList<>();
-        List<Sesion> ListaJueves = new ArrayList<>();
-        List<Sesion> ListaViernes = new ArrayList<>();
+
 
         for (Sesion Sesion : lista) {
             switch (Sesion.getDia()) {
@@ -37,7 +62,19 @@ public class HorarioControler {
                             break;
                     }
                     break;
-                case "Martes":
+            }
+        }
+        return ListaLunes;
+    }
+    public List<Sesion> filtrahorariosMartes(String id) {
+
+        List<Sesion> lista = sesionUseCase.getAll(id);
+        List<Sesion> ListaMartes = new ArrayList<>();
+
+
+        for (Sesion Sesion : lista) {
+            switch (Sesion.getDia()) {
+                case "Lunes":
                     switch (Sesion.getId_sesion()) {
                         case 1:
                             ListaMartes.add(0, Sesion);
@@ -59,7 +96,20 @@ public class HorarioControler {
                             break;
                     }
                     break;
-                case "Miercoles":
+            }
+        }
+        return ListaMartes;
+    }
+
+    public List<Sesion> filtrahorariosMiercoles(String id) {
+
+        List<Sesion> lista = sesionUseCase.getAll(id);
+        List<Sesion> ListaMiercoles = new ArrayList<>();
+
+
+        for (Sesion Sesion : lista) {
+            switch (Sesion.getDia()) {
+                case "Lunes":
                     switch (Sesion.getId_sesion()) {
                         case 1:
                             ListaMiercoles.add(0, Sesion);
@@ -81,7 +131,21 @@ public class HorarioControler {
                             break;
                     }
                     break;
-                case "Jueves":
+            }
+        }
+        return ListaMiercoles;
+    }
+
+
+    public List<Sesion> filtrahorariosJueves(String id) {
+
+        List<Sesion> lista = sesionUseCase.getAll(id);
+        List<Sesion> ListaJueves = new ArrayList<>();
+
+
+        for (Sesion Sesion : lista) {
+            switch (Sesion.getDia()) {
+                case "Lunes":
                     switch (Sesion.getId_sesion()) {
                         case 1:
                             ListaJueves.add(0, Sesion);
@@ -103,7 +167,18 @@ public class HorarioControler {
                             break;
                     }
                     break;
-                case "Viernes":
+            }
+        }
+        return ListaJueves;
+    }
+    public List<Sesion> filtrahorariosViernes(String id) {
+
+        List<Sesion> lista = sesionUseCase.getAll(id);
+        List<Sesion> ListaViernes = new ArrayList<>();
+
+        for (Sesion Sesion : lista) {
+            switch (Sesion.getDia()) {
+                case "Lunes":
                     switch (Sesion.getId_sesion()) {
                         case 1:
                             ListaViernes.add(0, Sesion);
@@ -127,7 +202,9 @@ public class HorarioControler {
                     break;
             }
         }
+        return ListaViernes;
     }
+
 
 
 }
