@@ -41,13 +41,14 @@ public class SesionRepositorySQL implements SesionRepository {
     }
 
     @Override
-    public List<Sesion> getALl() {
+    public List<Sesion> getALl(String id_aula) {
         try {
             Connection connectionBD = ConectionManager.getConexion("horarioAulas" );
             PreparedStatement stmnt = connectionBD.prepareStatement("SELECT s.dia, s.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, a.id_asignatura\n" +
                     "FROM sesion s\n" +
                     "JOIN  relacion r  on s.id_sesion = r.id_sesion\n" +
-                    "JOIN asignatura a on a.id_asignatura = r.id_asignatura;");
+                    "JOIN asignatura a on a.id_asignatura = r.id_asignatura;\n" +
+                    "where id_aula= " + id_aula);
 
             ResultSet rs = stmnt.executeQuery();
 

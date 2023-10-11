@@ -13,9 +13,9 @@ public class SesionUseCase {
     public List<Object> getAllAulas(){
         return DAOFactory.getInstance().getSesionRepository().getAllAulas();
     }
-    public List<Sesion> getAll(){
+    public List<Sesion> getAll(String id_aula){
 
-        return DAOFactory.getInstance().getSesionRepository().getALl();
+        return DAOFactory.getInstance().getSesionRepository().getALl(id_aula);
     }
 
 

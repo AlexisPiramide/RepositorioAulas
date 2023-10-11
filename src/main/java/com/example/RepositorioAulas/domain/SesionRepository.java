@@ -9,5 +9,5 @@ public interface SesionRepository {
 
     public List<Object> getAllAulas();
 
-    public List<Sesion> getALl();
+    public List<Sesion> getALl(String id_aula);
 }
