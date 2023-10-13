@@ -21,8 +21,11 @@ public class HorarioControler {
 
     @PostMapping("/horario")
     public String horario(Model model, @RequestParam("Aula") String id_aula) {
-        System.out.println(id_aula);
-        model.addAttribute("ListaLunes",filtrahorariosLunes(id_aula));
+        model.addAttribute("listaLunes",filtrahorariosLunes(id_aula));
+        model.addAttribute("listaMartes",filtrahorariosMartes(id_aula));
+        model.addAttribute("listaMiercoles",filtrahorariosMiercoles(id_aula));
+        model.addAttribute("listaJueves",filtrahorariosJueves(id_aula));
+        model.addAttribute("listaViernes",filtrahorariosViernes(id_aula));
 
 
         return "horario";
@@ -35,6 +38,34 @@ public class HorarioControler {
 
         return listaLunes;
     }
+
+    public List<Sesion> filtrahorariosMartes(String id) {
+
+        List<Sesion> listaMartes = sesionUseCase.getAll(id,2);
+
+        return listaMartes;
+    }
+
+    public List<Sesion> filtrahorariosMiercoles(String id) {
+
+        List<Sesion> listaMiercoles = sesionUseCase.getAll(id,3);
+
+        return listaMiercoles;
+    }
+    public List<Sesion> filtrahorariosJueves(String id) {
+
+        List<Sesion> listaJueves = sesionUseCase.getAll(id,4);
+
+        return listaJueves;
+    }
+
+    public List<Sesion> filtrahorariosViernes(String id) {
+
+        List<Sesion> listaViernes = sesionUseCase.getAll(id,5);
+
+        return listaViernes;
+    }
+
 
 
 

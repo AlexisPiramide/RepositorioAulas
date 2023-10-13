@@ -44,51 +44,44 @@ public class SesionRepositorySQL implements SesionRepository {
     public List<Sesion> getALl(String id_aula, Integer dia) {
         try {
             Connection connectionBD = ConectionManager.getConexion("horarioAulas" );
-            PreparedStatement stmnt = null;
-                    switch (dia){
-                        case 1:
-                            stmnt = connectionBD.prepareStatement("SELECT s.dia, s.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, a.id_asignatura " +
-                                    "FROM sesion s " +
-                                    "JOIN relacion r on s.id_sesion = r.id_sesion " +
-                                    "JOIN asignatura a on a.id_asignatura = r.id_asignatura " +
-                                    "where r.id_aula= '"+id_aula+"' && s.dia='Lunes'" +
-                                    "order by id_sesion asc;");
-                            break;
-
-                        case 2:
-                            stmnt = connectionBD.prepareStatement("SELECT s.dia, s.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, a.id_asignatura " +
-                                    "FROM sesion s " +
-                                    "JOIN relacion r on s.id_sesion = r.id_sesion " +
-                                    "JOIN asignatura a on a.id_asignatura = r.id_asignatura " +
-                                    "where r.id_aula= '"+id_aula+"' && s.dia='Martes'" +
-                                    "order by id_sesion asc;");
-                            break;
-                        case 3:
-                            stmnt = connectionBD.prepareStatement("SELECT s.dia, s.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, a.id_asignatura " +
-                                    "FROM sesion s " +
-                                    "JOIN relacion r on s.id_sesion = r.id_sesion " +
-                                    "JOIN asignatura a on a.id_asignatura = r.id_asignatura " +
-                                    "where r.id_aula= '"+id_aula+"' && s.dia='Miercoles'" +
-                                    "order by id_sesion asc;");
-                            break;
-                        case 4:
-                            stmnt = connectionBD.prepareStatement("SELECT s.dia, s.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, a.id_asignatura " +
-                                    "FROM sesion s " +
-                                    "JOIN relacion r on s.id_sesion = r.id_sesion " +
-                                    "JOIN asignatura a on a.id_asignatura = r.id_asignatura " +
-                                    "where r.id_aula= '"+id_aula+"' && s.dia='Jueves'" +
-                                    "order by id_sesion asc;");
-                            break;
-                        case 5:
-                            stmnt = connectionBD.prepareStatement("SELECT s.dia, s.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, a.id_asignatura " +
-                                    "FROM sesion s " +
-                                    "JOIN relacion r on s.id_sesion = r.id_sesion " +
-                                    "JOIN asignatura a on a.id_asignatura = r.id_asignatura " +
-                                    "where r.id_aula= '"+id_aula+"' && s.dia='Viernes'" +
-                                    "order by id_sesion asc;");
-                            break;
-
-                    }
+            PreparedStatement stmnt = switch (dia) {
+                case 1 ->
+                        connectionBD.prepareStatement("SELECT DISTINCT r.dia, r.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, r.id_asignatura " +
+                                "FROM sesion s " +
+                                "JOIN relacion r on s.id_sesion = r.id_sesion " +
+                                "JOIN asignatura a on a.id_asignatura = r.id_asignatura " +
+                                "where r.dia='lunes' && r.id_aula = " + id_aula + " " +
+                                "order by id_sesion asc;");
+                case 2 ->
+                        connectionBD.prepareStatement("SELECT DISTINCT r.dia, r.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, r.id_asignatura " +
+                                "FROM sesion s " +
+                                "JOIN relacion r on s.id_sesion = r.id_sesion " +
+                                "JOIN asignatura a on a.id_asignatura = r.id_asignatura " +
+                                "where r.dia='martes' && r.id_aula = " + id_aula + " " +
+                                "order by id_sesion asc;");
+                case 3 ->
+                        connectionBD.prepareStatement("SELECT DISTINCT r.dia, r.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, r.id_asignatura " +
+                                "FROM sesion s " +
+                                "JOIN relacion r on s.id_sesion = r.id_sesion " +
+                                "JOIN asignatura a on a.id_asignatura = r.id_asignatura " +
+                                "where r.dia='miercoles' && r.id_aula = " + id_aula + " " +
+                                "order by id_sesion asc;");
+                case 4 ->
+                        connectionBD.prepareStatement("SELECT DISTINCT r.dia, r.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, r.id_asignatura " +
+                                "FROM sesion s " +
+                                "JOIN relacion r on s.id_sesion = r.id_sesion " +
+                                "JOIN asignatura a on a.id_asignatura = r.id_asignatura " +
+                                "where r.dia='jueves' && r.id_aula = " + id_aula + " " +
+                                "order by id_sesion asc;");
+                case 5 ->
+                        connectionBD.prepareStatement("SELECT DISTINCT r.dia, r.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, r.id_asignatura " +
+                                "FROM sesion s " +
+                                "JOIN relacion r on s.id_sesion = r.id_sesion " +
+                                "JOIN asignatura a on a.id_asignatura = r.id_asignatura " +
+                                "where r.dia='viernes' && r.id_aula = " + id_aula + " " +
+                                "order by id_sesion asc;");
+                default -> null;
+            };
 
 
             ResultSet rs = stmnt.executeQuery();

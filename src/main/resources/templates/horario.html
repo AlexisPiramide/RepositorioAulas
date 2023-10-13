@@ -17,7 +17,7 @@
         <th>Jueves</th>
         <th>Viernes</th>
     </tr>
-    <tr th:each="sesion : ${ListaLunes}">
+    <tr th:each="sesion : ${#numbers.sequence(0, #lists.size(listaLunes)-1)}">
         <td>
             <p th:text="${sesion.hora_inicio}"></p>
             <p th:text="${sesion.hora_fin}"></p>
@@ -28,8 +28,19 @@
         <td>
             <p th:text="${sesion.id_asignatura}"></p>
         </td>
+        <td >
+            <p th:text="${sesion2.id_asignatura}"></p>
+        </td>
+        <td >
+            <p th:text="${sesion3.id_asignatura}"></p>
+        </td>
+        <td >
+            <p th:text="${sesion4.id_asignatura}"></p>
+        </td>
+        <td >
+            <p th:text="${sesion5.id_asignatura}"></p>
+        </td>
     </tr>
-
 </table>
 </body>
 </html>
