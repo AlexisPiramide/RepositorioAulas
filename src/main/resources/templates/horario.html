@@ -7,50 +7,29 @@
 <body>
 <a href="form">Regresar</a>
     <hr>
-<table empty-cells=show>
+<table border="1">
     <tr>
-        <th></th>
+        <th>Horario</th>
+        <th>Sesion</th>
         <th>Lunes</th>
         <th>Martes</th>
         <th>Miércoles</th>
         <th>Jueves</th>
         <th>Viernes</th>
     </tr>
-    <tr th:each="set : ${ListaLunes}">
+    <tr th:each="sesion : ${ListaLunes}">
         <td>
-            <span th:text="${set.id_aula}"></span><br/>
-            <span th:text="${set.hora_inicio} + ' - ' + ${set.hora_fin}"></span><br/>
-            <span th:text="${set.profesor}"></span>
+            <p th:text="${sesion.hora_inicio}"></p>
+            <p th:text="${sesion.hora_fin}"></p>
+        </td>
+        <td>
+            <p th:text="${sesion.id_sesion}"></p>
+        </td>
+        <td>
+            <p th:text="${sesion.id_asignatura}"></p>
         </td>
     </tr>
-    <tr th:each="set : ${ListaMartes}">
-        <td>
-            <span th:text="${set.id_aula}"></span><br/>
-            <span th:text="${set.hora_inicio} + ' - ' + ${set.hora_fin}"></span><br/>
-            <span th:text="${set.profesor}"></span>
-        </td>
-    </tr>
-    <tr th:each="set : ${ListaMiercoles}">
-        <td>
-            <span th:text="${set.id_aula}"></span><br/>
-            <span th:text="${set.hora_inicio} + ' - ' + ${set.hora_fin}"></span><br/>
-            <span th:text="${set.profesor}"></span>
-        </td>
-    </tr>
-    <tr th:each="set : ${ListaJueves}">
-        <td>
-            <span th:text="${set.id_aula}"></span><br/>
-            <span th:text="${set.hora_inicio} + ' - ' + ${set.hora_fin}"></span><br/>
-            <span th:text="${set.profesor}"></span>
-        </td>
-    </tr>
-    <tr th:each="set : ${ListaViernes}">
-        <td>
-            <span th:text="${set.id_aula}"></span><br/>
-            <span th:text="${set.hora_inicio} + ' - ' + ${set.hora_fin}"></span><br/>
-            <span th:text="${set.profesor}"></span>
-        </td>
-    </tr>
+
 </table>
 </body>
 </html>

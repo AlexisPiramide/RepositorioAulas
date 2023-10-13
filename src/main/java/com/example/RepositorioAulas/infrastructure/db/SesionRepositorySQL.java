@@ -41,11 +41,55 @@ public class SesionRepositorySQL implements SesionRepository {
     }
 
     @Override
-    public List<Sesion> getALl(String id_aula) {
+    public List<Sesion> getALl(String id_aula, Integer dia) {
         try {
             Connection connectionBD = ConectionManager.getConexion("horarioAulas" );
-            PreparedStatement stmnt = connectionBD.prepareStatement(
-                    "SELECT s.dia, s.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, a.id_asignatura FROM sesion s JOIN relacion r on s.id_sesion = r.id_sesion JOIN asignatura a on a.id_asignatura = r.id_asignatura where r.id_aula= '"+id_aula+"';");
+            PreparedStatement stmnt = null;
+                    switch (dia){
+                        case 1:
+                            stmnt = connectionBD.prepareStatement("SELECT s.dia, s.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, a.id_asignatura " +
+                                    "FROM sesion s " +
+                                    "JOIN relacion r on s.id_sesion = r.id_sesion " +
+                                    "JOIN asignatura a on a.id_asignatura = r.id_asignatura " +
+                                    "where r.id_aula= '"+id_aula+"' && s.dia='Lunes'" +
+                                    "order by id_sesion asc;");
+                            break;
+
+                        case 2:
+                            stmnt = connectionBD.prepareStatement("SELECT s.dia, s.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, a.id_asignatura " +
+                                    "FROM sesion s " +
+                                    "JOIN relacion r on s.id_sesion = r.id_sesion " +
+                                    "JOIN asignatura a on a.id_asignatura = r.id_asignatura " +
+                                    "where r.id_aula= '"+id_aula+"' && s.dia='Martes'" +
+                                    "order by id_sesion asc;");
+                            break;
+                        case 3:
+                            stmnt = connectionBD.prepareStatement("SELECT s.dia, s.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, a.id_asignatura " +
+                                    "FROM sesion s " +
+                                    "JOIN relacion r on s.id_sesion = r.id_sesion " +
+                                    "JOIN asignatura a on a.id_asignatura = r.id_asignatura " +
+                                    "where r.id_aula= '"+id_aula+"' && s.dia='Miercoles'" +
+                                    "order by id_sesion asc;");
+                            break;
+                        case 4:
+                            stmnt = connectionBD.prepareStatement("SELECT s.dia, s.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, a.id_asignatura " +
+                                    "FROM sesion s " +
+                                    "JOIN relacion r on s.id_sesion = r.id_sesion " +
+                                    "JOIN asignatura a on a.id_asignatura = r.id_asignatura " +
+                                    "where r.id_aula= '"+id_aula+"' && s.dia='Jueves'" +
+                                    "order by id_sesion asc;");
+                            break;
+                        case 5:
+                            stmnt = connectionBD.prepareStatement("SELECT s.dia, s.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, a.id_asignatura " +
+                                    "FROM sesion s " +
+                                    "JOIN relacion r on s.id_sesion = r.id_sesion " +
+                                    "JOIN asignatura a on a.id_asignatura = r.id_asignatura " +
+                                    "where r.id_aula= '"+id_aula+"' && s.dia='Viernes'" +
+                                    "order by id_sesion asc;");
+                            break;
+
+                    }
+
 
             ResultSet rs = stmnt.executeQuery();
 
@@ -54,7 +98,7 @@ public class SesionRepositorySQL implements SesionRepository {
 
             while (rs.next()){
 
-                listaAulas.add(new Sesion(rs.getNString(1),rs.getInt(2),rs.getNString(3),rs.getNString(4),rs.getNString(5),rs.getNString(6)));
+                listaAulas.add(new Sesion(rs.getString("dia"),rs.getInt("id_sesion"),rs.getString("hora_inicio"),rs.getString("hora_fin"),rs.getString("id_aula"),rs.getString("id_asignatura")));
             }
 
             return listaAulas;
