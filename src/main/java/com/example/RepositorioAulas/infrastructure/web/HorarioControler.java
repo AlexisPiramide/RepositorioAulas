@@ -41,7 +41,6 @@ public class HorarioControler {
         eventos.put("Viernes", filtrahorariosViernes(id_aula));
 
         model.addAttribute("eventos",eventos);
-        model.addAttribute("dias",dias);
 
         return "horario";
     }

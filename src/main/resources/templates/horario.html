@@ -1,20 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
 <body>
 <a href="form">Regresar</a>
-    <hr>
+<hr>
+
 <table border="1">
-    <tr th:each="dia : ${dias}">
-        <td th:text="${dia}"></td>
-        <td th:each="sesion: ${eventos[dia]}">
-            <p th:text="${sesion.id_sesion}"></p>
+    <thead>
+    <tr>
+        <th>Día</th>
+        <th>Horario</th>
+        <th>Sesion</th>
+        <th>ID Asignatura</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="dia : ${eventos}">
+        <td th:text="${dia.key}">Día</td>
+        <td>
+            <table >
+                <tr th:each="sesion : ${dia.value}">
+                    <td th:text="${sesion.hora_inicio}"></td>
+                    <td th:text="${sesion.hora_fin}"></td>
+                </tr>
+            </table>
+        </td>
+
+        <td>
+            <table>
+                <tr th:each="sesion : ${dia.value}">
+                    <td th:text="${sesion.id_sesion}">Some name</td>
+                </tr>
+            </table>
+        </td>
+
+        <td>
+            <table>
+                <tr th:each="sesion : ${dia.value}">
+                    <td th:text="${sesion.id_asignatura}">Some name</td>
+                </tr>
+            </table>
         </td>
     </tr>
+    </tbody>
 </table>
 </body>
 </html>
-
