@@ -46,35 +46,35 @@ public class SesionRepositorySQL implements SesionRepository {
             Connection connectionBD = ConectionManager.getConexion("horarioAulas" );
             PreparedStatement stmnt = switch (dia) {
                 case 1 ->
-                        connectionBD.prepareStatement("SELECT DISTINCT r.dia, r.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, r.id_asignatura " +
+                        connectionBD.prepareStatement("SELECT DISTINCT r.dia, r.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, r.id_asignatura, a.nombre " +
                                 "FROM sesion s " +
                                 "JOIN relacion r on s.id_sesion = r.id_sesion " +
                                 "JOIN asignatura a on a.id_asignatura = r.id_asignatura " +
                                 "where r.dia='lunes' && r.id_aula = " + id_aula + " " +
                                 "order by id_sesion asc;");
                 case 2 ->
-                        connectionBD.prepareStatement("SELECT DISTINCT r.dia, r.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, r.id_asignatura " +
+                        connectionBD.prepareStatement("SELECT DISTINCT r.dia, r.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, r.id_asignatura, a.nombre " +
                                 "FROM sesion s " +
                                 "JOIN relacion r on s.id_sesion = r.id_sesion " +
                                 "JOIN asignatura a on a.id_asignatura = r.id_asignatura " +
                                 "where r.dia='martes' && r.id_aula = " + id_aula + " " +
                                 "order by id_sesion asc;");
                 case 3 ->
-                        connectionBD.prepareStatement("SELECT DISTINCT r.dia, r.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, r.id_asignatura " +
+                        connectionBD.prepareStatement("SELECT DISTINCT r.dia, r.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, r.id_asignatura, a.nombre " +
                                 "FROM sesion s " +
                                 "JOIN relacion r on s.id_sesion = r.id_sesion " +
                                 "JOIN asignatura a on a.id_asignatura = r.id_asignatura " +
                                 "where r.dia='miercoles' && r.id_aula = " + id_aula + " " +
                                 "order by id_sesion asc;");
                 case 4 ->
-                        connectionBD.prepareStatement("SELECT DISTINCT r.dia, r.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, r.id_asignatura " +
+                        connectionBD.prepareStatement("SELECT DISTINCT r.dia, r.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, r.id_asignatura, a.nombre " +
                                 "FROM sesion s " +
                                 "JOIN relacion r on s.id_sesion = r.id_sesion " +
                                 "JOIN asignatura a on a.id_asignatura = r.id_asignatura " +
                                 "where r.dia='jueves' && r.id_aula = " + id_aula + " " +
                                 "order by id_sesion asc;");
                 case 5 ->
-                        connectionBD.prepareStatement("SELECT DISTINCT r.dia, r.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, r.id_asignatura " +
+                        connectionBD.prepareStatement("SELECT DISTINCT r.dia, r.id_sesion, s.hora_inicio, s.hora_fin, r.id_aula, r.id_asignatura, a.nombre " +
                                 "FROM sesion s " +
                                 "JOIN relacion r on s.id_sesion = r.id_sesion " +
                                 "JOIN asignatura a on a.id_asignatura = r.id_asignatura " +
@@ -91,7 +91,7 @@ public class SesionRepositorySQL implements SesionRepository {
 
             while (rs.next()){
 
-                listaAulas.add(new Sesion(rs.getString("dia"),rs.getInt("id_sesion"),rs.getString("hora_inicio"),rs.getString("hora_fin"),rs.getString("id_aula"),rs.getString("id_asignatura")));
+                listaAulas.add(new Sesion(rs.getString("dia"),rs.getInt("id_sesion"),rs.getString("hora_inicio"),rs.getString("hora_fin"),rs.getString("id_aula"),rs.getString("nombre")));
             }
 
             return listaAulas;

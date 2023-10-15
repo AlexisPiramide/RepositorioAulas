@@ -7,11 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class HorarioControler {
@@ -40,7 +37,16 @@ public class HorarioControler {
         eventos.put("Jueves", filtrahorariosJueves(id_aula));
         eventos.put("Viernes", filtrahorariosViernes(id_aula));
 
-        model.addAttribute("eventos",eventos);
+
+        // Construir un nuevo LinkedHashMap ordenado
+        Map<String, List<Sesion>> sortedMap = new LinkedHashMap<>();
+        for (String day : dias) {
+            if (eventos.containsKey(day)) {
+                sortedMap.put(day, eventos.get(day));
+            }
+        }
+
+        model.addAttribute("eventos",sortedMap);
 
         return "horario";
     }
