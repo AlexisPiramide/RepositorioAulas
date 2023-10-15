@@ -7,8 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class HorarioControler {
@@ -21,12 +24,24 @@ public class HorarioControler {
 
     @PostMapping("/horario")
     public String horario(Model model, @RequestParam("Aula") String id_aula) {
-        model.addAttribute("listaLunes",filtrahorariosLunes(id_aula));
-        model.addAttribute("listaMartes",filtrahorariosMartes(id_aula));
-        model.addAttribute("listaMiercoles",filtrahorariosMiercoles(id_aula));
-        model.addAttribute("listaJueves",filtrahorariosJueves(id_aula));
-        model.addAttribute("listaViernes",filtrahorariosViernes(id_aula));
 
+        List<String> dias = new ArrayList<>();
+        dias.add("Lunes");
+        dias.add("Martes");
+        dias.add("Miercoles");
+        dias.add("Jueves");
+        dias.add("Viernes");
+
+        Map<String, List<Sesion>> eventos = new HashMap<>();
+
+        eventos.put("Lunes",filtrahorariosLunes(id_aula));
+        eventos.put("Martes",filtrahorariosMartes(id_aula));
+        eventos.put("Miercoles", filtrahorariosMiercoles(id_aula));
+        eventos.put("Jueves", filtrahorariosJueves(id_aula));
+        eventos.put("Viernes", filtrahorariosViernes(id_aula));
+
+        model.addAttribute("eventos",eventos);
+        model.addAttribute("dias",dias);
 
         return "horario";
     }

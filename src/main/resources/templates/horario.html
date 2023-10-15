@@ -8,37 +8,10 @@
 <a href="form">Regresar</a>
     <hr>
 <table border="1">
-    <tr>
-        <th>Horario</th>
-        <th>Sesion</th>
-        <th>Lunes</th>
-        <th>Martes</th>
-        <th>Miércoles</th>
-        <th>Jueves</th>
-        <th>Viernes</th>
-    </tr>
-    <tr th:each="sesion : ${#numbers.sequence(0, #lists.size(listaLunes)-1)}">
-        <td>
-            <p th:text="${sesion.hora_inicio}"></p>
-            <p th:text="${sesion.hora_fin}"></p>
-        </td>
-        <td>
+    <tr th:each="dia : ${dias}">
+        <td th:text="${dia}"></td>
+        <td th:each="sesion: ${eventos[dia]}">
             <p th:text="${sesion.id_sesion}"></p>
-        </td>
-        <td>
-            <p th:text="${sesion.id_asignatura}"></p>
-        </td>
-        <td >
-            <p th:text="${sesion2.id_asignatura}"></p>
-        </td>
-        <td >
-            <p th:text="${sesion3.id_asignatura}"></p>
-        </td>
-        <td >
-            <p th:text="${sesion4.id_asignatura}"></p>
-        </td>
-        <td >
-            <p th:text="${sesion5.id_asignatura}"></p>
         </td>
     </tr>
 </table>
