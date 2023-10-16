@@ -20,6 +20,10 @@ public class Sesion {
         this.id_asignatura = id_asignatura;
     }
 
+    public Sesion() {
+
+    }
+
     public String getDia() {
         return dia;
     }

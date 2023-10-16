@@ -14,40 +14,29 @@
 <table border="1">
     <thead>
     <tr>
-        <th>Día</th>
-        <th>Horario</th>
+        <th> </th>
         <th>Sesion</th>
-        <th>Asignatura</th>
+        <th> Lunes </th>
+        <th> Martes </th>
+        <th> Miércoles </th>
+        <th> Jueves </th>
+        <th> Viernes </th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="dia : ${eventos}">
-        <td th:text="${dia.key}">Día</td>
-        <td>
-            <table >
-                <tr th:each="sesion : ${dia.value}">
-                    <td th:text="${sesion.hora_inicio}"></td>
-                    <td th:text="${sesion.hora_fin}"></td>
-                </tr>
-            </table>
-        </td>
-
-        <td>
-            <table>
-                <tr th:each="sesion : ${dia.value}">
-                    <td th:text="${sesion.id_sesion}">Some name</td>
-                </tr>
-            </table>
-        </td>
-
-        <td>
-            <table>
-                <tr th:each="sesion : ${dia.value}">
-                    <td th:text="${sesion.id_asignatura}">Some name</td>
-                </tr>
-            </table>
-        </td>
-    </tr>
+    <div th:each="bloque :${sesiones}">
+        <tr th:if="${bloque[0].hora_inicio}">
+            <td>
+                <p th:text="${bloque[0].hora_inicio}+ '-' +${bloque[0].hora_fin}"></p>
+            </td>
+            <td>
+                <p th:text="${bloque[0].id_sesion}"></p>
+            </td>
+            <td th:each="sesion : ${bloque}">
+                <p th:text="${sesion.id_asignatura}">
+            </td>
+        </tr>
+    </div>
     </tbody>
 </table>
 </body>
